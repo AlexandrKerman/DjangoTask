@@ -1,0 +1,136 @@
+.main_win {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+    flex: 1;
+    gap: 50px;
+}
+
+.box {
+    background: #fefefe;
+    border-radius: 20px;
+    height: 400px;
+    padding-left: 30px;
+    box-sizing: border-box;
+}
+
+.box h1 {
+    border-bottom: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #50505020;
+    padding-left: 10px;
+    width: calc(100% - 40px);
+}
+
+.contacts_win {
+    width: 500px;
+}
+
+.form_win {
+    width: 600px;
+}
+
+.info_block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.info_block_item {
+    display: flex;
+    height: 30px;
+    border-bottom: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #50505020;
+    padding-left: 10px;
+    width: calc(100% - 40px);
+}
+
+.info_block_item:last-child {
+    border: none;
+}
+
+.info_block_item span:first-child {
+    font-weight: 600;
+    width: 100px;
+}
+
+.form_win form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+}
+
+.base_input {
+    box-sizing: border-box;
+    height: 30px;
+    width: 300px;
+    outline: none;
+    border-width: 1px;
+    background: #fafafa;
+    border-color: #50505030;
+    border-radius: 10px;
+    align-content: center;
+    padding-left: 10px;
+    transition: .05s;
+}
+
+.base_input:hover {
+    background: #f5f5f5;
+    transition: .1s;
+}
+
+.base_input:focus {
+    background: #fefefe;
+    border-width: 2px;
+    border-radius: 12px;
+    transition: .5s;
+}
+
+.form_item {
+    display: flex;
+    flex-direction: row;
+}
+
+.form_item label {
+    width: 100px;
+    align-content: center;
+    font-weight: 600;
+}
+
+.submit_btn {
+    width: 120px;
+    height: 40px;
+    background: #40b0f0;
+    border: 0;
+    border-radius: 10px;
+    color: #f0f0f0;
+    font-size: 18px;
+    transition: .1s;
+}
+
+.submit_btn:hover {
+    cursor: pointer;
+    background: #63e779;
+    width: 150px;
+    transition: .15s;
+}
+
+.submit_btn:active {
+    width: 130px;
+    height: 50px;
+    margin-left: 10px;
+    margin-top: -5px;
+    background: #29af40;
+    border-radius: 15px;
+    transition: .05s;
+}
+
+.textarea {
+    resize: none;
+    height: 100px;
+    align-content: baseline;
+}

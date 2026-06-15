@@ -1,0 +1,21 @@
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    background: #303040;
+    color: #f0f0f0;
+}
+
+.footer_info {
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+}
+
+.footer_info_block a:hover {
+    text-decoration:underline;
+}
