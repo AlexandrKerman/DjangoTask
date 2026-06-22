@@ -1,0 +1,41 @@
+[
+{
+    "model": "catalog.product",
+    "pk": 7,
+    "fields": {
+        "name": "Phone1",
+        "description": "Phone1_desc",
+        "image": "/images/1.png",
+        "category": 4,
+        "price": 1200,
+        "created_at": "2026-03-23",
+        "updated_at": "2026-03-23"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 8,
+    "fields": {
+        "name": "Phone2",
+        "description": "Phone2_desc",
+        "image": "/images/2.png",
+        "category": 4,
+        "price": 2500,
+        "created_at": "2026-03-23",
+        "updated_at": "2026-03-23"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 9,
+    "fields": {
+        "name": "TV1",
+        "description": "TV1_desc",
+        "image": "/images/3.png",
+        "category": 5,
+        "price": 3500,
+        "created_at": "2026-03-23",
+        "updated_at": "2026-03-23"
+    }
+}
+]
