@@ -1,0 +1,47 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'assets/styles/contacts.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main_win">
+    <div class="contacts_win box">
+        <h1>Контакты</h1>
+        <div class="info_block">
+            <div class="info_block_item">
+                <span>Страна</span>
+                <span>USA</span>
+            </div>
+            <div class="info_block_item">
+                <span>ИНН</span>
+                <span>91-1144442</span>
+            </div>
+            <div class="info_block_item">
+                <span>Адрес</span>
+                <span>Redmond, WA98052-6399</span>
+            </div>
+        </div>
+    </div>
+    <div class="form_win box">
+        <h1>Свяжитесь с нами</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="form_item">
+                <label for="name">Имя</label>
+                <input class="base_input" type="text" name="name" id="name" maxlength="50">
+            </div> 
+            <div class="form_item">
+                <label for="phone">Телефон</label>
+                <input class="base_input" type="tel" name="phone" id="phone" maxlength="11">
+            </div> 
+            <div class="form_item">
+                <label for="message">Сообщение</label>
+                <textarea class="textarea base_input" maxlength="200" name="message" id="message"></textarea>
+            </div>
+            <button class="submit_btn" type="submit">Отправить</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+

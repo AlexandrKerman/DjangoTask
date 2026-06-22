@@ -1,0 +1,24 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Skystore</title>
+    <link rel="stylesheet" href="{% static 'assets/styles/main.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/styles/header.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/styles/footer.css' %}">
+    {% block style %}
+    {% endblock %}
+</head>
+<body>
+    {% include 'header.html' %}
+
+    <div class="main">
+    {% block content %}
+    {% endblock %}
+    </div>
+
+    {% include 'footer.html' %}
+</body>
+</html>

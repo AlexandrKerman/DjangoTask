@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'assets/styles/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main_win">
+    <h1><span class="Blue_text">Sky</span><span class="Green_text">Store</span></h1>
+    <p class="description">Skystore - это отличный вариант хранения ваших плагинов и примеров кода, который вы бы хотели продать</p>
+    <div class="cards_block">
+        <span method="post" class="card">
+            <span class="card_header">Удобный сервис для рассылок</span>
+            <div class="card_body">
+                <ul>
+                    <li>Неограниченная лицензия</li>
+                    <li>Поддержка</li>
+                    <li>Установка на сервер</li>
+                    <li>Получение обновлений</li>
+                </ul>
+            </div>
+            <button type="submit" class="card_btn">Купить</button>
+        </span>
+    </div>
+</div>
+{% endblock %}
+
