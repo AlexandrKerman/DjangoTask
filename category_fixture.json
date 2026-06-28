@@ -1,0 +1,18 @@
+[
+{
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+        "name": "Смартфоны",
+        "description": "Здесь смартфоны. Только они и ничего более"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 5,
+    "fields": {
+        "name": "Телевизоры",
+        "description": "Здесь телевизоры"
+    }
+}
+]
