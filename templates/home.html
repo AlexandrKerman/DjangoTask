@@ -33,7 +33,7 @@
             <div class="card_body">
                 <img class="product_image" src="{{ i.image }}" alt="">
                 <p class="product_description">
-                    {{ i.description }}
+                    {{ i.description|truncatechars:100 }}
                 </p>
             </div>
             <a class="card_btn" href="product/{{ i.id }}">
