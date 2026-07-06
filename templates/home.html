@@ -31,7 +31,7 @@
                 {{ i.name }}
             </span>
             <div class="card_body">
-                <img class="product_image" src="{{ i.image }}" alt="">
+                <img class="product_image" src="{{ i.image.url }}" alt="">
                 <p class="product_description">
                     {{ i.description|truncatechars:100 }}
                 </p>

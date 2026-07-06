@@ -6,10 +6,10 @@
 
 {% block content %}
     <div class="main_win">
-        <img class="product_image" src="{{ product_info.image }}" alt="">
+        <img class="product_image" src="{{ product_info.image.url }}" alt="">
         <div class="name_container">
             <h1 class="name">{{ product_info.name }}</h1>
-            <span class="category"> {{product_info.category__name}} </span>
+            <span class="category"> {{product_info.category.name}} </span>
         </div>
         <div class="description">
             {{ product_info.description }}
