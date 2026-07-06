@@ -1,0 +1,117 @@
+.main_win {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 1000px;
+}
+
+.main_name {
+    top: 0;
+    text-align: center;
+}
+
+.blog_block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.blog_element {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 10px;
+    border-radius: 20px;
+    width: 80%;
+    margin-left: 20px;
+    box-shadow: 2px 3px 9px 1px #00000020;
+    background: #fafafa;
+}
+
+.thumbnail {
+    height: 100px;
+    border-radius: 30px;
+    border: solid 1px #40404020;
+}
+
+.blog_element_date {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-left: solid 1px;
+    padding-left: 10px;
+}
+
+.blog_element_control {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.h2_style {
+    align-self: center;
+    text-align: center;
+}
+
+.input_form {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: auto;
+    margin-left: 50px;
+    gap: 10px;
+}
+
+.base_input {
+    box-sizing: border-box;
+    width: 600px;
+    resize: none;
+    min-height: 30px;
+    border: 0;
+    outline: 0;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px 0px #00000010;
+    font-size: 16px;
+}
+
+.input_block textarea {
+    height: 200px;
+}
+
+.base_input:hover {
+    background: #fcfcfc;
+    border: solid 1px #20202030;
+    box-shadow: 2px 2px 10px 0px #00000020;
+}
+
+.base_input:focus {
+    border: solid 2px #20202050;
+}
+
+.input_block {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 720px;
+}
+
+.send_blog_btn {
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    border: 0;
+    background: #40b0f0;;
+    color: #fafafa;
+    font-weight: 600;
+}
+
+.send_blog_btn:hover {
+    cursor: pointer;
+    background: #63e779;
+}
+
+.send_blog_btn:active {
+    background: #29af40;
+}

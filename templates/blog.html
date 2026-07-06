@@ -1,0 +1,52 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'assets/styles/blog.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main_win">
+    <h1 class="main_name">Блог</h1>
+    <form class="input_form" action="" method="post">
+        <h2 class="h2_style">Создайте запись</h2>
+        {% csrf_token %}
+        <input type="file" name="preview_image" id="">
+        <div class="input_block">
+            <label for="header">Заголовок</label>
+            <input class="base_input" maxlength="50" name="header" type="text" id="header">
+        </div>
+        <div class="input_block">
+            <label for="content">Содежрание</label>
+            <textarea class="base_input" maxlength="500" name="content" id=""></textarea>
+        </div>
+
+        <button class="send_blog_btn" type="submit">Отправить</button>
+    </form>
+    <div class="blog_block">
+        <h2 class="h2_style">Существующие записи</h2>
+        <!--Блок для for -->
+        <div class="blog_element">
+            <img class="thumbnail" src="{% static '1.png' %}" alt="">
+            <div class="blog_element_content">
+                <h2>Какое-то название</h2>
+                <p>Вот моё содержание, оно такое большое, что даже не помещается сюда. Вот предложение, а вот ещё одно предложение, следующее за прошлым предложением, которое было уже закончено. Вот кончилось и это</p>
+            </div>
+            <div class="blog_element_date">
+                <div class="created_at">
+                    <span>Создано</span>
+                    <span>30.11.2000 11:40</span>
+                </div>
+                <div class="updated_at">
+                    <span>Изменено</span>
+                    <span>20.12.2000 12:43</span>
+                </div>
+                <div class="blog_element_control">
+                    <span>Редактировать</span>
+                    <span>Удалить</span>
+                </div>
+            </div>
+        </div>
+        <!--Конец блока-->
+    </div>
+</div>
+{% endblock %}
