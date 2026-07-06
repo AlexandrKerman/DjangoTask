@@ -3,7 +3,7 @@
     flex-direction: column;
     align-content: center;
     align-items: center;
-    height: 1000px;
+    height: auto;
 }
 
 .main_win h1 {
@@ -28,23 +28,25 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    width: 800px;
-    height: 600px;
-    gap: 10px;
+    width: auto;
+    height: auto;
+    gap: 40px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
 }
 
 .card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 350px;
-    width: 280px;
+    height: 400px;
+    width: 300px;
     filter: drop-shadow(5px 5px 10px #00000020);
     transition: .1s;
 }
 
 .card:hover {
-    margin-top: 20px;
+    transform: translateY(10px);
     filter: drop-shadow(10px 10px 15px #00000040);
     transition: .2s;
 }
@@ -78,6 +80,9 @@
     border: 0;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+    margin-top: auto;
+    align-content: center;
+    text-align: center;
     height: 50px;
     width: 100%;
     background: #40b0f0;
@@ -97,3 +102,17 @@
 .card_btn:active {
     background: #29af40;
 }
+
+.product_image {
+    object-fit: contain;
+    width: 100%;
+    height: 200px;
+    border-bottom: solid 2px #00000020;
+}
+
+.product_description {
+    padding: 5px;
+    font-weight: 600;
+    color: #909090;
+}
+
