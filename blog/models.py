@@ -6,5 +6,5 @@ class Blog(models.Model):
     preview_image = models.ImageField(upload_to='thumbnails/')
     is_published = models.BooleanField()
     views = models.IntegerField()
-    created_at = models.DateField()
-    updated_at = models.DateField()
+    created_at = models.DateTimeField()
+    updated_at = models.DateTimeField()

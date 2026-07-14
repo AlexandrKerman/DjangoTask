@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, View
 
-from DjangoTask.settings import MEDIA_URL
 from .models import Product
 
 class HomeListView(ListView):

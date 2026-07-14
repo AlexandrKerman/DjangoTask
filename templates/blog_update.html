@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'assets/styles/blog_update.css' %}">
+{% endblock %}
+
+{% block content %}
+<form method="post" class="main_win" enctype="multipart/form-data">
+    <div class="cl-1">
+        {% csrf_token %}
+        <span>Текущее изображение</span>
+        <img class="thumbnail" src="{{ blog_info.preview_image.url }}" alt="">
+        <input type="file" name="preview_image" id="preview_image">
+        <span>
+            Просмотров: {{ blog_info.views }}
+        </span>
+        <span>
+            Дата создания:
+            <br>
+            {{ blog_info.created_at|date:"d.m.Y H:i" }}
+        </span>
+        <span>
+            Дата изменения:
+            <br>
+            {{ blog_info.updated_at|date:"d.m.Y H:i" }}
+        </span>
+        <button type="submit" class="save_btn">Сохранить</button>
+    </div>
+    <div class="cl-2">
+        <input class="base_input" type="text" name="header" id="header" value="{{ blog_info.header }}">
+        </input>
+        <textarea class="base_input" name="content" id="content">{{ blog_info.content }}</textarea>
+    </div>
+</form>
+{% endblock %}
