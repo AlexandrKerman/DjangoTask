@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'assets/styles/blog_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main_win">
+    <div class="cl-1">
+        <img class="thumbnail" src="{{ blog_info.preview_image.url }}" alt="">
+        <span>
+            Просмотров: {{ blog_info.views }}
+        </span>
+        <span>
+            Дата создания:
+            <br>
+            {{ blog_info.created_at|date:"d.m.Y H:i" }}
+        </span>
+        <span>
+            Дата изменения:
+            <br>
+            {{ blog_info.updated_at|date:"d.m.Y H:i" }}
+        </span>
+        <a href="{% url 'edit' blog_info.id %}" class="edit_link">Редактировать</a>
+    </div>
+    <div class="cl-2">
+        <h1>
+            {{ blog_info.header }}
+        </h1>
+        <div class="blog_content">
+            {{ blog_info.content }}
+        </div>
+    </div>
+</div>
+{% endblock %}

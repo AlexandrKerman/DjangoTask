@@ -57,7 +57,7 @@ header {
     flex-direction: row;
     padding-right: 20px;
     font-size: 18px;
-    width: 200px;
+    width: auto;
     height: 100%;
 }
 
