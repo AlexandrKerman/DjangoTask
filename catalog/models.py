@@ -16,12 +16,12 @@ class Category(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=150, verbose_name='Наименование')
-    description = models.CharField(max_length=300, verbose_name='Описвание')
+    description = models.CharField(max_length=300, verbose_name='Описание')
     image = models.ImageField(upload_to='images/', verbose_name='Изображение')
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    price = models.IntegerField()
-    created_at = models.DateField()
-    updated_at = models.DateField()
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Категория')
+    price = models.IntegerField(verbose_name='Цена')
+    created_at = models.DateField(verbose_name='Создано')
+    updated_at = models.DateField(verbose_name='Обновлено')
 
     class Meta:
         verbose_name = 'Продукт'

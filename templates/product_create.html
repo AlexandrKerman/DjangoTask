@@ -1,0 +1,83 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'assets/styles/create_product.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="main_win">
+        <h1>Создание товара</h1>
+        <div class="product_create_win">
+            <form method="post" class="product_form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <!--Изображение-->
+                <div class="row_el">
+                    <div class="cl-1">
+                        {{ form.image.label }}
+                    </div>
+                    <div class="cl-2">
+                        <input type="file" name="image">
+                    </div>
+                    <div class="cl-3">
+                        {{ form.image.errors }}
+                    </div>
+                </div>
+                <!--Имя-->
+                <div class="row_el">
+                    <div class="cl-1">
+                        {{ form.name.label }}
+                    </div>
+                    <div class="cl-2">
+                        <input class="base_input" type="text" name="name" value="{{ form.name.value|default:'' }}">
+                    </div>
+                    <div class="cl-3">
+                        {{ form.name.errors }}
+                    </div>
+                </div>
+                <!--Категория-->
+                <div class="row_el">
+                    <div class="cl-1">
+                        {{ form.category.label }}
+                    </div>
+                    <div class="cl-2">
+                        <input class="base_input" type="text" name="category" list="category_list" value="{{ form.category.value|default:'' }}">
+                        <datalist id="category_list">
+                            {% for category in categories %}
+                                <option value="{{ category.name }}"></option>
+                            {% endfor %}
+                        </datalist>
+                    </div>
+                    <div class="cl-3">
+                        {{ form.category.errors }}
+                    </div>
+                </div>
+                <!--Стоимость-->
+                <div class="row_el">
+                    <div class="cl-1">
+                        {{ form.price.label }}
+                    </div>
+                    <div class="cl-2">
+                        <input class="base_input" type="number" name="price" id="" value="{{ form.price.value|default:'' }}">
+                    </div>
+                    <div class="cl-3">
+                        {{ form.price.errors }}
+                    </div>
+                </div>
+                <!--Описание-->
+                <div class="row_el">
+                    <div class="cl-1">
+                        {{ form.description.label }}
+                    </div>
+                    <div class="cl-2">
+                        <textarea class="base_input" name="description" id="">{{ form.description.value|default:'' }}</textarea>
+                    </div>
+                    <div class="cl-3">
+                        {{ form.description.errors }}
+                    </div>
+                </div>
+                <button class="form_btn">Создать</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
