@@ -77,6 +77,14 @@
     font-weight: 600;
 }
 
+.form_btn:hover {
+    background: #2f7ca8;
+    cursor: pointer;
+}
+
+.form_btn:active {
+    background: #236388;
+}
 
 
 .base_input {

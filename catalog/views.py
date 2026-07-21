@@ -3,7 +3,7 @@ from itertools import product
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, View
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.utils import timezone
 
 from .models import Product, Category
@@ -47,8 +47,33 @@ class ProductCreateView(CreateView):
 
 
 class ProductUpdateView(UpdateView):
-    pass
+    model = Product
+    form_class = CatalogCreateForm
+    template_name = 'product_update.html'
+    success_url = reverse_lazy('home')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all().order_by('name')
+        return context
+
+    def form_valid(self, form):
+        category_name = form.cleaned_data['category'].strip()
+        category, _ = Category.objects.get_or_create(name=category_name)
+
+        product = form.save(commit=False)
+        product.category = category
+        product.updated_at = timezone.now().today()
+
+        product.save()
+        return super().form_valid(form)
+
+class ProductDeleteView(DeleteView):
+    model = Product
+    success_url = reverse_lazy('home')
+
+    def get(self, request, *args, **kwargs):
+        return self.delete(request, *args, **kwargs)
 
 class ContactsView(View):
     template_name = 'contacts.html'
