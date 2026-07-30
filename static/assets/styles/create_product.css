@@ -1,0 +1,116 @@
+.main_win {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.product_create_win {
+    background: #fbfbfb;
+    width: auto;
+    height: 600px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 3px 3px 6px 5px #00000030;
+    box-sizing: border-box;
+}
+
+.product_form {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.row_el {
+    display: flex;
+    flex-direction: row;
+    min-height: 60px;
+    box-sizing: border-box;
+    padding: 10px;
+    height: auto;
+    border-radius: 10px;
+    border-bottom: solid 1px #40404040;
+    align-items: center;
+}
+
+.row_el:last-of-type{
+    border: none;
+}
+
+.cl-1 {
+    width: 200px;
+    font-size: 18px;
+    color: #202020;
+}
+
+.cl-2 {
+    width: 400px;
+}
+
+.cl-3 {
+    width: auto;
+    color: #fff;
+}
+
+.errorlist {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.errorlist li {
+    background: #f14d4d;
+    border-radius: 1000px;
+    box-sizing: border-box;
+    padding: 0 5px 0 5px;
+    box-shadow: 1px 1px 3px 1px #00000020;
+}
+
+.form_btn {
+    margin-top: auto;
+    height: 50px;
+    border-radius: 15px;
+    border: none;
+    background: #4ab9f9;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.form_btn:hover {
+    background: #2f7ca8;
+    cursor: pointer;
+}
+
+.form_btn:active {
+    background: #236388;
+}
+
+
+.base_input {
+    background: #fff;
+    box-sizing: border-box;
+    width: 100%;
+    resize: none;
+    min-height: 30px;
+    border: solid 1px #00000020;;
+    outline: 0;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px 0px #00000010;
+    font-size: 16px;
+}
+
+.product_form textarea {
+    height: 100px;
+    padding: 5px;
+}
+
+.base_input:hover {
+    background: #fcfcfc;
+    border: solid 1px #20202030;
+    box-shadow: 2px 2px 10px 0px #00000020;
+}
+
+.base_input:focus {
+    border: solid 2px #20202050;
+}
