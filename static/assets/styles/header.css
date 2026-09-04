@@ -62,12 +62,18 @@ header {
 }
 
 .navbar_link {
+    border: 0;
+    font-size: inherit;
+    background: inherit;
+    color: inherit;
     position: relative;
     text-align: center;
     align-content: center;
     width: 100px;
     height: 100%;
     border-color: #505060;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
     transition: .1s;
 }
 
@@ -76,6 +82,16 @@ header {
     padding-top: 15px;
     background: #505060;
     transition: .2s;
+}
+
+.navbar_btn {
+    background: inherit;
+    color: inherit;
+    font-size: inherit;
+    border: 0;
+    height: inherit;
+    width: 100%;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+    cursor: pointer;
 }

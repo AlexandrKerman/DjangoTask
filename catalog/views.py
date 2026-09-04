@@ -5,15 +5,18 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.utils import timezone
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 from .models import Product, Category
 from .forms import CatalogCreateForm
-
 
 class HomeListView(ListView):
     model = Product
     template_name = 'home.html'
     context_object_name = 'products'
+
+
 
 
 class ProductDetailView(DetailView):
@@ -22,7 +25,7 @@ class ProductDetailView(DetailView):
     context_object_name = 'product_info'
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
     form_class = CatalogCreateForm
     template_name = 'product_create.html'
@@ -46,7 +49,7 @@ class ProductCreateView(CreateView):
         return super().form_valid(form)
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(UpdateView, LoginRequiredMixin):
     model = Product
     form_class = CatalogCreateForm
     template_name = 'product_update.html'
@@ -68,7 +71,7 @@ class ProductUpdateView(UpdateView):
         product.save()
         return super().form_valid(form)
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(DeleteView, LoginRequiredMixin):
     model = Product
     success_url = reverse_lazy('home')
 

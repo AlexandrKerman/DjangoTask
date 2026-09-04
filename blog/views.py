@@ -3,6 +3,7 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormMixin, DeleteView, UpdateView
 from django.utils import timezone
 from django.db.models import F
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Blog
 from .forms import BlogForm
@@ -39,7 +40,7 @@ class BlogListView(FormMixin, ListView):
         return super().form_invalid(form)
 
 
-class BlogDeleteView(DeleteView):
+class BlogDeleteView(DeleteView, LoginRequiredMixin):
     model = Blog
     success_url = reverse_lazy('blog')
 
@@ -60,7 +61,7 @@ class BlogDetailView(DetailView):
         return obj
 
 
-class BlogUpdateView(UpdateView):
+class BlogUpdateView(UpdateView, LoginRequiredMixin):
     model = Blog
     template_name = 'blog_update.html'
     fields = ['header', 'content', 'preview_image']
