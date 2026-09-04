@@ -1,0 +1,58 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'assets/styles/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main_win">
+    <h1><span class="Blue_text">Sky</span><span class="Green_text">Store</span></h1>
+    <p class="description">Skystore - это отличный вариант хранения ваших плагинов и примеров кода, который вы бы хотели продать</p>
+    <div class="cards_block">
+        <span class="card">
+            <span class="card_header">Удобный сервис для рассылок</span>
+            <div class="card_body">
+                <ul>
+                    <li>Неограниченная лицензия</li>
+                    <li>Поддержка</li>
+                    <li>Установка на сервер</li>
+                    <li>Получение обновлений</li>
+                </ul>
+            </div>
+            <button type="submit" class="card_btn">Купить</button>
+        </span>
+    </div>
+
+    <h1>Продукты</h1>
+    <a href="{% url 'product_create' %}" class="create_link">Создать новый</a>
+    <div class="cards_block">
+        {% for i in products %}
+        <span class="card">
+            <span class="card_header">
+                {{ i.name }}
+            </span>
+            <div class="card_body">
+                <img class="product_image" src="{{ i.image.url }}" alt="">
+                <p class="product_description">
+                    {{ i.description|truncatechars:100 }}
+                </p>
+            </div>
+            {% if user.is_autheticated %}
+            <div class="control_block">
+                <a class="card_btn_update" href="{% url 'product_update' i.id %}">
+                    Редактировать
+                </a>
+                <a class="card_btn_delete" href="{% url 'product_delete' i.id %}">
+                    Удалить
+                </a>
+            </div>  
+            {% endif %}          
+            <a class="card_btn" href="product/{{ i.id }}">
+                Перейти
+            </a>
+        </span>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+

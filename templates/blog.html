@@ -1,0 +1,63 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'assets/styles/blog.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main_win">
+    <h1 class="main_name">Блог</h1>
+    {% if user.is_authenticated %}
+    <form class="input_form" action="" method="post" enctype="multipart/form-data">
+        <h2 class="h2_style">Создайте запись</h2>
+        {% csrf_token %}
+        <input type="file" name="preview_image" id="preview_image">
+        <div class="input_block">
+            <label for="header">Заголовок</label>
+            <input class="base_input" maxlength="50" name="header" type="text" id="header">
+        </div>
+        <div class="input_block">
+            <label for="content">Содежрание</label>
+            <textarea class="base_input" maxlength="500" name="content" id="content"></textarea>
+        </div>
+
+        <button class="send_blog_btn" type="submit">Отправить</button>
+    </form>
+    {% endif %}
+    <div class="blog_block">
+        <h2 class="h2_style">Существующие записи</h2>
+        <!--Блок для for -->
+        {% for i in blog_data %}
+        <div class="blog_element">
+            <img class="thumbnail" src="{{ i.preview_image.url }}" alt="">
+            <div class="blog_element_content">
+                <h2>{{ i.header }}</h2>
+                <p>{{ i.content|truncatechars:200 }}</p>
+                <div class="redirect_link_block">
+                    <a class="redirect_link" href="detail/{{ i.id }}">Перейти</a>
+                </div>
+            </div>
+            <div class="blog_element_date">
+                <div class="created_at">
+                    <span>Создано</span>
+                    <br>
+                    <span>{{ i.created_at|date:"d.m.Y H:i" }}</span>
+                </div>
+                <div class="updated_at">
+                    <span>Изменено</span>
+                    <br>
+                    <span>{{ i.updated_at|date:"d.m.Y H:i" }}</span>
+                </div>
+                {% if user.is_authenticated %}
+                <div class="blog_element_control">
+                    <a class="edit_link" href="edit/{{ i.id }}">Редактировать</a>
+                    <a class="delete_link" href="delete/{{ i.id }}">Удалить</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+        <!--Конец блока-->
+    </div>
+</div>
+{% endblock %}
