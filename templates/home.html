@@ -22,7 +22,6 @@
             <button type="submit" class="card_btn">Купить</button>
         </span>
     </div>
-
     <h1>Продукты</h1>
     <a href="{% url 'product_create' %}" class="create_link">Создать новый</a>
     <div class="cards_block">
@@ -37,7 +36,7 @@
                     {{ i.description|truncatechars:100 }}
                 </p>
             </div>
-            {% if user.is_autheticated %}
+            {% if perms.catalog.can_unpublish_product or user == i.owner %}
             <div class="control_block">
                 <a class="card_btn_update" href="{% url 'product_update' i.id %}">
                     Редактировать

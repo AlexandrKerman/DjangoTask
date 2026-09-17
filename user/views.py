@@ -18,8 +18,10 @@ class UserCreateView(CreateView):
 
     def form_valid(self, form):
         from_email = DEFAULT_FROM_EMAIL
-        send_mail(subject='test1', message='Proverka', from_email=from_email,
-                  recipient_list=['alalkol0212@gmail.com', ])
+        print(form.cleaned_data['email'])
+
+        # send_mail(subject='test1', message='Proverka', from_email=from_email,
+        #           recipient_list=[form.cleaned_data.get('email')])
         return super().form_valid(form)
 
 

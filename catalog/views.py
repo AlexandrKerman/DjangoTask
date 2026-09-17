@@ -1,5 +1,6 @@
 from itertools import product
 
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, View
@@ -44,12 +45,13 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
         product.category = category
         product.created_at = timezone.now().today()
         product.updated_at = timezone.now().today()
+        product.owner = self.request.user
 
         product.save()
         return super().form_valid(form)
 
 
-class ProductUpdateView(UpdateView, LoginRequiredMixin):
+class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
     form_class = CatalogCreateForm
     template_name = 'product_update.html'
@@ -71,12 +73,26 @@ class ProductUpdateView(UpdateView, LoginRequiredMixin):
         product.save()
         return super().form_valid(form)
 
-class ProductDeleteView(DeleteView, LoginRequiredMixin):
+    def get_form_class(self):
+        user = self.request.user
+
+        if user == self.object.owner:
+            return super().get_form_class()
+        if user.has_perm('catalog.can_unpublish_product'):
+            return super().get_form_class()
+        raise PermissionDenied
+
+
+class ProductDeleteView(LoginRequiredMixin, DeleteView):
     model = Product
     success_url = reverse_lazy('home')
 
     def get(self, request, *args, **kwargs):
-        return self.delete(request, *args, **kwargs)
+        obj = self.get_object()
+        user = request.user
+        if any([user == obj.owner, user.has_perm('catalog.delete_product')]):
+            return self.delete(request, *args, **kwargs)
+        raise PermissionDenied
 
 class ContactsView(View):
     template_name = 'contacts.html'

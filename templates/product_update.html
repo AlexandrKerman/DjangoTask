@@ -28,7 +28,7 @@
                         {{ form.name.label }}
                     </div>
                     <div class="cl-2">
-                        <input class="base_input" type="text" name="name" value="{{ form.name.value|default:'' }}">
+                        <input class="base_input" type="text" name="name" value="{{ form.name.value|default:'' }}" {% if user != product.owner %} readonly {% endif %}>
                     </div>
                     <div class="cl-3">
                         {{ form.name.errors }}
@@ -40,7 +40,7 @@
                         {{ form.category.label }}
                     </div>
                     <div class="cl-2">
-                        <input class="base_input" type="text" name="category" list="category_list" value="{{ form.category.value|default:'' }}">
+                        <input class="base_input" type="text" name="category" list="category_list" value="{{ form.category.value|default:'' }}" {% if user != product.owner %}readonly{% endif %}>
                         <datalist id="category_list">
                             {% for category in categories %}
                                 <option value="{{ category.name }}"></option>
@@ -57,7 +57,7 @@
                         {{ form.price.label }}
                     </div>
                     <div class="cl-2">
-                        <input class="base_input" type="number" name="price" id="" value="{{ form.price.value|default:'' }}">
+                        <input class="base_input" type="number" name="price" id="" value="{{ form.price.value|default:'' }}" {% if user != product.owner %} readonly {% endif %}>
                     </div>
                     <div class="cl-3">
                         {{ form.price.errors }}
@@ -69,10 +69,27 @@
                         {{ form.description.label }}
                     </div>
                     <div class="cl-2">
-                        <textarea class="base_input" name="description" id="">{{ form.description.value|default:'' }}</textarea>
+                        <textarea class="base_input" name="description" id="" {% if user != product.owner %} readonly {% endif %}>{{ form.description.value|default:'' }}</textarea>
                     </div>
                     <div class="cl-3">
                         {{ form.description.errors }}
+                    </div>
+                </div>
+                <!--Публикация-->
+                <div class="row_el">
+                    <div class="cl-1">
+                        {{ form.is_published.label }}
+                    </div>
+                    <div class="cl-2">
+                        {% if user == product.owner %}
+                        <input type="checkbox" name="is_published" {% if product.is_published %} checked {% endif %} disabled>
+                        <input type="hidden" name="is_published" value="{% if product.is_published %} on {% endif %}">
+                        {% else %}
+                        <input type="checkbox" name="is_published" {% if product.is_published %} checked {% endif %}>
+                        {% endif %}
+                    </div>
+                    <div class="cl-3">
+                        {{ form.is_published.errors }}
                     </div>
                 </div>
                 <button class="form_btn">Сохранить</button>

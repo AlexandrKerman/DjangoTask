@@ -11,7 +11,7 @@ class CatalogCreateForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = ['name', 'description', 'image', 'price']
+        fields = ['name', 'description', 'image', 'price', 'is_published']
         error_messages = {'category': {'required': 'Это поле обязательно'}}
         for field in fields:
             error_messages[field] = {'required': 'Это поле обязательно'}
