@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'assets/styles/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main_win">
+    <h1>Продукты категории</h1>
+    <a href="{% url 'home' %}" class="create_link filter">Назад на главную</a>
+    <div class="cards_block">
+        {% for i in products %}
+        <span class="card">
+            <span class="card_header">
+                {{ i.name }}
+            </span>
+            <div class="card_body">
+                <img class="product_image" src="{{ i.image.url }}" alt="">
+                <p class="product_description">
+                    {{ i.description|truncatechars:100 }}
+                </p>
+            </div>
+            {% if perms.catalog.can_unpublish_product or user == i.owner %}
+            <div class="control_block">
+                <a class="card_btn_update" href="{% url 'product_update' i.id %}">
+                    Редактировать
+                </a>
+                <a class="card_btn_delete" href="{% url 'product_delete' i.id %}">
+                    Удалить
+                </a>
+            </div>
+            {% endif %}
+            <a class="card_btn" href="product/{{ i.id }}">
+                Перейти
+            </a>
+        </span>
+        {% empty %}
+        <p class="description">В этой категории пока нет продуктов.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

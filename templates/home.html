@@ -22,6 +22,14 @@
             <button type="submit" class="card_btn">Купить</button>
         </span>
     </div>
+    <h1>Категории</h1>
+    <div class="cards_block">
+        {% for category in categories %}
+        <a href="{% url 'filtered' category.pk %}" class="create_link filter">
+            {{ category.name }}
+        </a>
+        {% endfor %}
+    </div>
     <h1>Продукты</h1>
     <a href="{% url 'product_create' %}" class="create_link">Создать новый</a>
     <div class="cards_block">

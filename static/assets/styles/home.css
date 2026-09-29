@@ -201,3 +201,10 @@
     transition: .05s;
     box-shadow: 1px 1px 4px 1px #00000060;
 }
+
+.filter {
+    font-size: 18px;
+    height: 45px;
+    width: 300px;
+    background: #b8b8c0;
+}
