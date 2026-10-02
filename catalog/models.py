@@ -1,3 +1,4 @@
+from django.core.cache import cache
 from django.db import models
 from django.db.models import ForeignKey
 
@@ -37,3 +38,11 @@ class Product(models.Model):
 
     def __str__(self):
         return f'{self.pk}. {self.name}. {self.price}. {self.category}'
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        cache.delete(f'product_{self.pk}')
+
+    def delete(self, *args, **kwargs):
+        cache.delete(f'product_{self.pk}')
+        super().delete(*args, **kwargs)

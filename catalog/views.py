@@ -1,29 +1,56 @@
+from calendar import month
 from itertools import product
 
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView, View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.core.cache import cache
+from django.views.decorators.cache import cache_page
 
 from .models import Product, Category
 from .forms import CatalogCreateForm
+from .services import get_products_by_category
 
+@method_decorator(cache_page(60), name='dispatch')
 class HomeListView(ListView):
     model = Product
     template_name = 'home.html'
     context_object_name = 'products'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all().order_by('name')
+        return context
 
+
+class CategoryProductView(ListView):
+    model = Product
+    template_name = 'filtered_product.html'
+    context_object_name = 'products'
+
+    def get_queryset(self):
+        category_pk = self.kwargs['pk']
+        return get_products_by_category(category_pk)
 
 
 class ProductDetailView(DetailView):
     model = Product
     template_name = 'product.html'
     context_object_name = 'product_info'
+
+    def get_object(self, queryset=None):
+        pk = self.kwargs.get(self.pk_url_kwarg)
+        product_cache_name = f'product_{pk}'
+        product = cache.get(product_cache_name)
+        if not product:
+            product = super().get_object(queryset)
+            cache.set(product_cache_name, product, 60 * 10)
+        return product
 
 
 class ProductCreateView(LoginRequiredMixin, CreateView):
@@ -93,6 +120,7 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
         if any([user == obj.owner, user.has_perm('catalog.delete_product')]):
             return self.delete(request, *args, **kwargs)
         raise PermissionDenied
+
 
 class ContactsView(View):
     template_name = 'contacts.html'
